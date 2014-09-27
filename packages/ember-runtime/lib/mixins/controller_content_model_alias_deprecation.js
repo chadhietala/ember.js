@@ -39,14 +39,5 @@ export default Mixin.create({
     // Calling super is only OK here since we KNOW that
     // there is another Mixin loaded first.
     this._super.apply(this, arguments);
-
-    var modelSpecified = !!props.model;
-
-    if (props.content && !modelSpecified) {
-      props.model = props.content;
-      delete props['content'];
-
-      Ember.deprecate('Do not specify `content` on a Controller, use `model` instead.', false);
-    }
   }
 });

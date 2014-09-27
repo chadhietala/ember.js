@@ -102,8 +102,6 @@ export default function renderHelper(name, contextString, options) {
     throw new EmberError("You must pass a templateName to render");
   }
 
-  Ember.deprecate("Using a quoteless parameter with {{render}} is deprecated. Please update to quoted usage '{{render \"" + name + "\"}}.", options.types[0] !== 'ID');
-
   // # legacy namespace
   name = name.replace(/\//g, '.');
   // \ legacy slash as namespace support

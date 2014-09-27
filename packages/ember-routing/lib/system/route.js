@@ -990,33 +990,22 @@ var Route = EmberObject.extend(ActionHandler, {
     // referenced in action handlers
     this.controller = controller;
 
-    if (this.setupControllers) {
-      Ember.deprecate("Ember.Route.setupControllers is deprecated. Please use Ember.Route.setupController(controller, model) instead.");
-      this.setupControllers(controller, context);
-    } else {
-      var states = get(this, '_qp.states');
-      if (transition) {
-        // Update the model dep values used to calculate cache keys.
-        stashParamNames(this.router, transition.state.handlerInfos);
-        controller._qpDelegate = states.changingKeys;
-        controller._updateCacheParams(transition.params);
-      }
-      controller._qpDelegate = states.allowOverrides;
+    var states = get(this, '_qp.states');
+    if (transition) {
+      // Update the model dep values used to calculate cache keys.
+      stashParamNames(this.router, transition.state.handlerInfos);
+      controller._qpDelegate = states.changingKeys;
+      controller._updateCacheParams(transition.params);
+    }
+    controller._qpDelegate = states.allowOverrides;
 
-      if (transition) {
-        var qpValues = getQueryParamsFor(this, transition.state);
-        controller.setProperties(qpValues);
-      }
-
-      this.setupController(controller, context, transition);
+    if (transition) {
+      var qpValues = getQueryParamsFor(this, transition.state);
+      controller.setProperties(qpValues);
     }
 
-    if (this.renderTemplates) {
-      Ember.deprecate("Ember.Route.renderTemplates is deprecated. Please use Ember.Route.renderTemplate(controller, model) instead.");
-      this.renderTemplates(context);
-    } else {
-      this.renderTemplate(controller, context);
-    }
+    this.setupController(controller, context, transition);
+    this.renderTemplate(controller, context);
   },
 
   /**

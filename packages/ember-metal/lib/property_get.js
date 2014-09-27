@@ -58,15 +58,6 @@ var get = function get(obj, keyName) {
   Ember.assert("Cannot call get with "+ keyName +" key.", !!keyName);
   Ember.assert("Cannot call get with '"+ keyName +"' on an undefined object.", obj !== undefined);
 
-  if (obj === null) {
-    var value = _getPath(obj, keyName);
-    Ember.deprecate(
-      "Ember.get fetched '"+keyName+"' from the global context. This behavior will change in the future (issue #3852)",
-      !value || (obj && obj !== Ember.lookup) || isPath(keyName) || isGlobalPath(keyName+".") // Add a . to ensure simple paths are matched.
-    );
-    return value;
-  }
-
   var meta = obj['__ember_meta__'];
   var desc = meta && meta.descs[keyName];
   var ret;

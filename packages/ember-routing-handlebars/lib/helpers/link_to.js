@@ -67,12 +67,6 @@ var LinkView = Ember.LinkView = EmberComponent.extend({
   tagName: 'a',
 
   /**
-    @deprecated Use current-when instead.
-    @property currentWhen
-  */
-  currentWhen: null,
-
-  /**
     Used to determine when this LinkView is active.
 
     @property currentWhen
@@ -207,8 +201,6 @@ var LinkView = Ember.LinkView = EmberComponent.extend({
   */
   init: function() {
     this._super.apply(this, arguments);
-
-    Ember.deprecate('Using currentWhen with {{link-to}} is deprecated in favor of `current-when`.', !this.currentWhen);
 
     // Map desired event name to invoke function
     var eventName = get(this, 'eventName');
@@ -934,21 +926,6 @@ export function queryParamsHelper(options) {
   });
 }
 
-/**
-  See [link-to](/api/classes/Ember.Handlebars.helpers.html#method_link-to)
-
-  @method linkTo
-  @for Ember.Handlebars.helpers
-  @deprecated
-  @param {String} routeName
-  @param {Object} [context]*
-  @return {String} HTML string
-*/
-function deprecatedLinkToHelper() {
-  Ember.warn("The 'linkTo' view helper is deprecated in favor of 'link-to'");
-  return linkToHelper.apply(this, arguments);
-}
-
 function getResolvedQueryParams(linkView, targetRouteName) {
   var helperParameters = linkView.parameters;
   var queryParamsObject = linkView.queryParamsObject;
@@ -999,6 +976,5 @@ function shallowEqual(a, b) {
 
 export {
   LinkView,
-  deprecatedLinkToHelper,
   linkToHelper
 };

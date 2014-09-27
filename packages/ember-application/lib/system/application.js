@@ -530,20 +530,6 @@ var Application = Namespace.extend(DeferredMixin, {
   },
 
   /**
-    Calling initialize manually is not supported.
-
-    Please see Ember.Application#advanceReadiness and
-    Ember.Application#deferReadiness.
-
-    @private
-    @deprecated
-    @method initialize
-   **/
-  initialize: function() {
-    Ember.deprecate('Calling initialize manually is not supported. Please see Ember.Application#advanceReadiness and Ember.Application#deferReadiness');
-  },
-
-  /**
     Initialize the application. This happens automatically.
 
     Run any initializers and run the application load hook. These hooks may
@@ -751,15 +737,6 @@ var Application = Namespace.extend(DeferredMixin, {
   ready: K,
 
   /**
-    @deprecated Use 'Resolver' instead
-    Set this to provide an alternate class to `Ember.DefaultResolver`
-
-
-    @property resolver
-  */
-  resolver: null,
-
-  /**
     Set this to provide an alternate class to `Ember.DefaultResolver`
 
     @property resolver
@@ -776,17 +753,6 @@ var Application = Namespace.extend(DeferredMixin, {
 
   initializer: function(options) {
     this.constructor.initializer(options);
-  },
-
-  /**
-    @method then
-    @private
-    @deprecated
-  */
-  then: function() {
-    Ember.deprecate('Do not use `.then` on an instance of Ember.Application.  Please use the `.ready` hook instead.');
-
-    this._super.apply(this, arguments);
   }
 });
 
@@ -1028,10 +994,6 @@ Application.reopenClass({
   @return {*} the resolved value for a given lookup
 */
 function resolverFor(namespace) {
-  if (namespace.get('resolver')) {
-    Ember.deprecate('Application.resolver is deprecated in favor of Application.Resolver', false);
-  }
-
   var ResolverClass = namespace.get('resolver') || namespace.get('Resolver') || DefaultResolver;
   var resolver = ResolverClass.create({
     namespace: namespace
@@ -1052,9 +1014,6 @@ function resolverFor(namespace) {
   resolve.normalize = function(fullName) {
     if (resolver.normalize) {
       return resolver.normalize(fullName);
-    } else {
-      Ember.deprecate('The Resolver should now provide a \'normalize\' function', false);
-      return fullName;
     }
   };
 

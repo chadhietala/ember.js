@@ -112,9 +112,6 @@ function handlebarsGet(root, path, options) {
       root = Ember.lookup;
       value = get(root, path);
     }
-    if (root === Ember.lookup || root === null) {
-      Ember.deprecate("Global lookup of "+path+" from a Handlebars template is deprecated.");
-    }
   }
 
   return value;
@@ -163,13 +160,6 @@ function handlebarsGetView(context, path, container, data) {
     if (!viewClass && !isGlobal) {
       Ember.assert("View requires a container to resolve views not passed in through the context", !!container);
       viewClass = container.lookupFactory('view:'+path);
-    }
-    if (!viewClass && isGlobal) {
-      var globalViewClass = get(path);
-      Ember.deprecate('Resolved the view "'+path+'" on the global context. Pass a view name to be looked up on the container instead, such as {{view "select"}}. http://emberjs.com/guides/deprecations#toc_global-lookup-of-views-since-1-8', !globalViewClass);
-      if (globalViewClass) {
-        viewClass = globalViewClass;
-      }
     }
   } else {
     viewClass = path;

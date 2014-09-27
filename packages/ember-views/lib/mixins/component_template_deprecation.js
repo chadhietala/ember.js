@@ -35,28 +35,5 @@ export default Mixin.create({
     // Calling super is only OK here since we KNOW that
     // there is another Mixin loaded first.
     this._super.apply(this, arguments);
-
-    var deprecatedProperty, replacementProperty;
-    var layoutSpecified = (props.layoutName || props.layout || get(this, 'layoutName'));
-
-    if (props.templateName && !layoutSpecified) {
-      deprecatedProperty = 'templateName';
-      replacementProperty = 'layoutName';
-
-      props.layoutName = props.templateName;
-      delete props['templateName'];
-    }
-
-    if (props.template && !layoutSpecified) {
-      deprecatedProperty = 'template';
-      replacementProperty = 'layout';
-
-      props.layout = props.template;
-      delete props['template'];
-    }
-
-    if (deprecatedProperty) {
-      Ember.deprecate('Do not specify ' + deprecatedProperty + ' on a Component, use ' + replacementProperty + ' instead.', false);
-    }
   }
 });

@@ -38,7 +38,6 @@ import {
   bindClasses
 } from "ember-handlebars/helpers/binding";
 
-import collectionHelper from "ember-handlebars/helpers/collection";
 import {
   ViewHelper,
   viewHelper
@@ -53,7 +52,6 @@ import {
   GroupedEach,
   eachHelper
 } from "ember-handlebars/helpers/each";
-import templateHelper from "ember-handlebars/helpers/template";
 import partialHelper from "ember-handlebars/helpers/partial";
 import yieldHelper from "ember-handlebars/helpers/yield";
 import locHelper from "ember-handlebars/helpers/loc";
@@ -143,13 +141,11 @@ EmberHandlebars.registerHelper('if', ifHelper);
 EmberHandlebars.registerHelper('unless', unlessHelper);
 EmberHandlebars.registerHelper('bind-attr', bindAttrHelper);
 EmberHandlebars.registerHelper('bindAttr', bindAttrHelperDeprecated);
-EmberHandlebars.registerHelper('collection', collectionHelper);
 EmberHandlebars.registerHelper("log", logHelper);
 EmberHandlebars.registerHelper("debugger", debuggerHelper);
 EmberHandlebars.registerHelper("each", eachHelper);
 EmberHandlebars.registerHelper("loc", locHelper);
 EmberHandlebars.registerHelper("partial", partialHelper);
-EmberHandlebars.registerHelper("template", templateHelper);
 EmberHandlebars.registerHelper("yield", yieldHelper);
 EmberHandlebars.registerHelper("view", viewHelper);
 EmberHandlebars.registerHelper("unbound", unboundHelper);
