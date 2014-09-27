@@ -844,42 +844,6 @@ test("The loading state doesn't get entered for promises that resolve on the sam
   equal(Ember.$('p', '#qunit-fixture').text(), "1", "The app is now in the specials state");
 });
 
-/*
-asyncTest("The Special page returning an error fires the error hook on SpecialRoute", function() {
-  Router.map(function() {
-    this.route("home", { path: "/" });
-    this.resource("special", { path: "/specials/:menu_item_id" });
-  });
-
-  var menuItem;
-
-  App.MenuItem = Ember.Object.extend(Ember.DeferredMixin);
-  App.MenuItem.reopenClass({
-    find: function(id) {
-      menuItem = App.MenuItem.create({ id: id });
-      Ember.run.later(function() { menuItem.resolve(menuItem); }, 1);
-      return menuItem;
-    }
-  });
-
-  App.SpecialRoute = Ember.Route.extend({
-    setup: function() {
-      throw 'Setup error';
-    },
-    actions: {
-      error: function(reason) {
-        equal(reason, 'Setup error');
-        QUnit.start();
-      }
-    }
-  });
-
-  bootApplication();
-
-  handleURLRejectsWith('/specials/1', 'Setup error');
-});
-*/
-
 test("The Special page returning an error invokes SpecialRoute's error handler", function() {
   Router.map(function() {
     this.route("home", { path: "/" });

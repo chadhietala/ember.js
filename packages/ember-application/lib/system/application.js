@@ -9,7 +9,6 @@ import { set } from "ember-metal/property_set";
 import { runLoadHooks } from "ember-runtime/system/lazy_load";
 import DAG from "ember-application/system/dag";
 import Namespace from "ember-runtime/system/namespace";
-import DeferredMixin from "ember-runtime/mixins/deferred";
 import DefaultResolver from "ember-application/system/resolver";
 import { create } from "ember-metal/platform";
 import run from "ember-metal/run_loop";
@@ -194,9 +193,7 @@ function props(obj) {
   @extends Ember.Namespace
 */
 
-var Application = Namespace.extend(DeferredMixin, {
-  _suppressDeferredDeprecation: true,
-
+var Application = Namespace.extend({
   /**
     The root DOM element of the Application. This can be specified as an
     element or a
@@ -686,8 +683,6 @@ var Application = Namespace.extend(DeferredMixin, {
       Ember.Namespace.processAll();
       Ember.BOOTED = true;
     }
-
-    this.resolve(this);
   },
 
   /**
