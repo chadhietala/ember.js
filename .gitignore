@@ -19,6 +19,7 @@ docs
 lib/*/tests/all.js
 lib/*/tests/qunit*
 lib/bundler/man
+!lib/ember-addon/*
 pkg
 rdoc
 spade-boot.js
