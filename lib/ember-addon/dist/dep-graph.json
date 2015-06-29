@@ -1,0 +1,37 @@
+{
+  "ember.js": {
+    "exports": {
+      "exported": [],
+      "specifiers": []
+    },
+    "imports": [
+      {
+        "imported": [
+          "default"
+        ],
+        "source": "npm:jquery",
+        "specifiers": [
+          {
+            "imported": "default",
+            "kind": "named",
+            "local": "$"
+          }
+        ]
+      }
+    ]
+  },
+  "ember/resolver.js": {
+    "exports": {
+      "exported": [],
+      "specifiers": []
+    },
+    "imports": []
+  },
+  "ember/load-initializers.js": {
+    "exports": {
+      "exported": [],
+      "specifiers": []
+    },
+    "imports": []
+  }
+}
