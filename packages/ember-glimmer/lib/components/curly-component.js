@@ -22,7 +22,6 @@ class CurlyComponentManager {
     let attrs = args.value();
     let merged = assign({}, attrs, { attrs });
     let component = klass.create(merged);
-
     keywords.get('view').value().appendChild(component);
 
     // component.didInitAttrs({ attrs });
