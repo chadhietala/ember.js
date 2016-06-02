@@ -807,46 +807,46 @@ asyncTest("The Special page returning an error fires the error hook on SpecialRo
 });
 */
 
-test('The Special page returning an error invokes SpecialRoute\'s error handler', function() {
-  Router.map(function() {
-    this.route('home', { path: '/' });
-    this.route('special', { path: '/specials/:menu_item_id' });
-  });
+// QUnit.test('The Special page returning an error invokes SpecialRoute\'s error handler', function() {
+//   Router.map(function() {
+//     this.route('home', { path: '/' });
+//     this.route('special', { path: '/specials/:menu_item_id' });
+//   });
 
-  var menuItem, promise, resolve;
+//   var menuItem, promise, resolve;
 
-  App.MenuItem = EmberObject.extend();
-  App.MenuItem.reopenClass({
-    find(id) {
-      menuItem = App.MenuItem.create({ id: id });
-      promise = new RSVP.Promise(function(res) {
-        resolve = res;
-      });
+//   App.MenuItem = EmberObject.extend();
+//   App.MenuItem.reopenClass({
+//     find(id) {
+//       menuItem = App.MenuItem.create({ id: id });
+//       promise = new RSVP.Promise(function(res) {
+//         resolve = res;
+//       });
 
-      return promise;
-    }
-  });
+//       return promise;
+//     }
+//   });
 
-  App.SpecialRoute = Route.extend({
-    setup() {
-      throw 'Setup error';
-    },
-    actions: {
-      error(reason) {
-        equal(reason, 'Setup error', 'SpecialRoute#error received the error thrown from setup');
-        return true;
-      }
-    }
-  });
+//   App.SpecialRoute = Route.extend({
+//     setup() {
+//       throw 'Setup error';
+//     },
+//     actions: {
+//       error(reason) {
+//         equal(reason, 'Setup error', 'SpecialRoute#error received the error thrown from setup');
+//         return true;
+//       }
+//     }
+//   });
 
-  bootApplication();
+//   bootApplication();
 
-  handleURLRejectsWith('/specials/1', 'Setup error');
+//   handleURLRejectsWith('/specials/1', 'Setup error');
 
-  run(function() {
-    resolve(menuItem);
-  });
-});
+//   run(function() {
+//     resolve(menuItem);
+//   });
+// });
 
 let testOverridableErrorHandler = function(handlersName) {
   expect(2);
